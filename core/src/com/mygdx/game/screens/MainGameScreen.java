@@ -2,11 +2,10 @@ package com.mygdx.game.screens;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class IntroScreen extends GameScreen {
+public class MainGameScreen extends GameScreen {
 
-    public IntroScreen(SpriteBatch _batch, final ScreenManager _screenManager) {
+    public MainGameScreen(SpriteBatch _batch, ScreenManager _screenManager) {
         super(_batch, _screenManager);
-
     }
 
     @Override
@@ -21,15 +20,6 @@ public class IntroScreen extends GameScreen {
 
     @Override
     public void render(float delta) {
-
-        update(delta);
-        clearScreen();
-
-        batch.begin();
-
-        batch.draw(background, 0, 0);
-
-        batch.end();
 
     }
 

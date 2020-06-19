@@ -14,8 +14,9 @@ public class MainClass extends Game {
 	
 	@Override
 	public void create () {
+		System.out.println("running...");
 		screenManager = new ScreenManager(this);
-		screenManager.setScreen(ScreenManager.ScreenType.TEST_SCREEN);
+		screenManager.setScreen(ScreenManager.ScreenType.INTRO_SCREEN);
 	}
 
 	@Override

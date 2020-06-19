@@ -9,6 +9,7 @@ public class ScreenManager {
     protected SpriteBatch batch;
 
     protected TestScreen testScreen;
+    protected IntroScreen introScreen;
 
     public enum ScreenType {
 
@@ -35,10 +36,19 @@ public class ScreenManager {
                     parent.setScreen(testScreen);
                 }
                 break;
-//            case INTRO_SCREEN:
-//                break;
+
+            case INTRO_SCREEN:
+                if ( introScreen == null ) {
+                    introScreen = new IntroScreen(batch, this);
+                    parent.setScreen(introScreen);
+                } else {
+                    parent.setScreen(introScreen);
+                }
+                break;
+
 //            case MAIN_GAME_SCREEN:
 //                break;
+
             default:
                 break;
 
