@@ -7,16 +7,17 @@ public class EntityConfig {
     protected String entityID;
     protected Entity.State state;
 
-    protected float healthPoints;
+    protected int healthPoints;
 
     protected Vector2 textureRegionPos;
     protected Vector2 startPosition;
 
-    protected float collisionBoxSize;
+    protected int collisionBoxSize;
 
+    public EntityConfig() {}
 
     public String getEntityID() {
-        return entityID;
+        return this.entityID;
     }
 
     public void setEntityID(String entityID) {
@@ -24,15 +25,15 @@ public class EntityConfig {
     }
 
     public Entity.State getState() {
-        return state;
+        return this.state;
     }
 
-    public void setState(Entity.State state) {
-        this.state = state;
+    public void setState(Entity.State _state) {
+        this.state = _state;
     }
 
     public Vector2 getTextureRegionPos() {
-        return textureRegionPos;
+        return this.textureRegionPos;
     }
 
     public void setTextureRegionPos(Vector2 textureRegionPos) {
@@ -40,26 +41,26 @@ public class EntityConfig {
     }
 
     public Vector2 getStartPosition() {
-        return startPosition;
+        return this.startPosition;
     }
 
-    public void setStartPosition(Vector2 startPosition) {
-        this.startPosition = startPosition;
+    public void setStartPosition(Vector2 _startPosition) {
+        this.startPosition = _startPosition;
     }
 
-    public float getCollisionBoxSize() {
-        return collisionBoxSize;
+    public int getCollisionBoxSize() {
+        return this.collisionBoxSize;
     }
 
-    public void setCollisionBoxSize(float collisionBoxSize) {
+    public void setCollisionBoxSize(int collisionBoxSize) {
         this.collisionBoxSize = collisionBoxSize;
     }
 
-    public float getHealthPoints() {
-        return healthPoints;
+    public int getHealthPoints() {
+        return this.healthPoints;
     }
 
-    public void setHealthPoints(float healthPoints) {
-        this.healthPoints = healthPoints;
+    public void setHealthPoints(int _healthPoints) {
+        this.healthPoints = _healthPoints;
     }
 }

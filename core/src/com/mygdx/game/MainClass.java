@@ -7,7 +7,7 @@ import com.mygdx.game.screens.ScreenManager;
 
 public class MainClass extends Game {
 
-	public static final int WIDTH = 680, HEIGHT = 820;
+	public static final int WIDTH = 580, HEIGHT = 720;
 	public static final String TITLE = "Invaders From Space!!..";
 
 	protected ScreenManager screenManager;

@@ -15,6 +15,8 @@ public class DesktopLauncher {
 		cfg.width = MainClass.WIDTH;
 		cfg.height = MainClass.HEIGHT;
 
+		cfg.y = 50;
+
 		cfg.useGL30 = false;
 
 		cfg.resizable = false;

@@ -9,7 +9,7 @@ import com.mygdx.game.entities.Entity;
 public abstract class GraphicsComponent implements Component, Disposable {
 
     protected TextureRegion region;
-    protected float drawSize = 32f;
+    protected int drawSize = 64;
 
     public GraphicsComponent() {
 
@@ -22,7 +22,6 @@ public abstract class GraphicsComponent implements Component, Disposable {
         int y = (int) (entity.getTextureRegionPos().y);
 
         region = new TextureRegion(spriteSheet, x, y, drawSize, drawSize);
-
     }
 
 }

@@ -7,7 +7,7 @@ public class PlayerGraphicsComponent extends GraphicsComponent{
 
     @Override
     public void render(SpriteBatch batch, Entity _entity) {
-        batch.draw(region, _entity.getPosition().x, _entity.getPosition().y);
+        batch.draw(region, _entity.getPosition().x, _entity.getPosition().y, drawSize, drawSize);
     }
 
     @Override

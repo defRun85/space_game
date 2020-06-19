@@ -1,6 +1,7 @@
 package com.mygdx.game.entities;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.components.Component;
@@ -23,7 +24,8 @@ public class Entity {
         MOVE_LEFT,
         MOVE_RIGHT,
         MOVE_UP,
-        MOVE_DOWN
+        MOVE_DOWN,
+        IDLE
     }
 
     public Entity(PhysicsComponent _physicsComponent, GraphicsComponent _graphicsComponent) {
@@ -49,6 +51,10 @@ public class Entity {
 
     public void update(float delta, ArrayList<Entity> entities) {
         physicsComponent.update(delta, this, entities);
+    }
+
+    public void render(SpriteBatch batch) {
+        this.graphicsComponent.render(batch, this);
     }
 
     public void sendMessage(Component.MESSAGE type, String message) {
@@ -82,6 +88,8 @@ public class Entity {
     public void setConfig(EntityConfig _config) {
         this.config = _config;
     }
+
+    public EntityConfig getConfig() { return this.config; }
 
     public void setTexture(Texture spritesheet) {
         this.graphicsComponent.setTexture(spritesheet, this);

@@ -9,14 +9,16 @@ import com.mygdx.game.components.PlayerPhysicsComponent;
 
 public class EntityFactory {
 
-    protected Json json = new Json();
+    private Json json = new Json();
 
     protected Texture spritesheet;
 
-    protected final String SPRITESHEET_PATH = "gfx/spritesheet.png";
+//    protected final String SPRITESHEET_PATH = "gfx/spritesheet.png";
+
+    protected final String SPRITESHEET_PATH = "gfx/space_sprite_sheet.png";
 
     protected final static String PLAYER_CONFIG_PATH = "json/player.json";
-//    protected final static String ENEMY_CONFIG_PATH = "json/enemy.json";
+    protected final static String ENEMY_CONFIG_PATH = "json/enemy.json";
 
     public enum EntityType {
 
@@ -41,7 +43,7 @@ public class EntityFactory {
                 EntityConfig playerConfig = getEntityConfig(PLAYER_CONFIG_PATH);
                 entity.setConfig(playerConfig);
                 entity.setTexture(spritesheet);
-                entity.sendMessage(Component.MESSAGE.STATE, json.toJson(playerConfig.getState()));
+                entity.sendMessage(Component.MESSAGE.STATE, json.toJson(entity.getConfig().getState()));
                 entity.init();
                 return entity;
 
@@ -49,9 +51,14 @@ public class EntityFactory {
 //                return null;
 //                break;
 //
-//            case ENEMY:
-//                return null;
-//                break;
+            case ENEMY:
+                entity = new Entity(new PlayerPhysicsComponent(), new PlayerGraphicsComponent());
+                EntityConfig enemyConfig = getEntityConfig(ENEMY_CONFIG_PATH);
+                entity.setConfig(enemyConfig);
+                entity.setTexture(spritesheet);
+                entity.sendMessage(Component.MESSAGE.STATE, json.toJson(entity.getConfig().getState()));
+                entity.init();
+                return entity;
 
             default:
                 return null;
