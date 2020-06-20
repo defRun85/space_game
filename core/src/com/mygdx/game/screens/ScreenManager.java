@@ -1,12 +1,14 @@
 package com.mygdx.game.screens;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.AssetLoader;
 import com.mygdx.game.MainClass;
 
 public class ScreenManager {
 
     protected MainClass parent;
     protected SpriteBatch batch;
+    protected AssetLoader assetLoader;
 
     protected TestScreen testScreen;
     protected IntroScreen introScreen;
@@ -21,7 +23,12 @@ public class ScreenManager {
 
     public ScreenManager(MainClass _parent) {
         this.parent = _parent;
+
+        assetLoader = new AssetLoader();
         batch = new SpriteBatch();
+
+        assetLoader.loadAssets();
+
     }
 
     public void setScreen(ScreenType type) {
@@ -54,6 +61,10 @@ public class ScreenManager {
 
         }
 
+    }
+
+    public AssetLoader getAssetLoader() {
+        return this.assetLoader;
     }
 
 }

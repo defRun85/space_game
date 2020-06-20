@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.mygdx.game.AssetLoader;
 import com.mygdx.game.MainClass;
 
 public class IntroScreen extends GameScreen {
@@ -27,7 +28,9 @@ public class IntroScreen extends GameScreen {
 
         table.align(Align.bottomLeft);
 
-        skin = new Skin(Gdx.files.internal("uiskin/skin/lgdxs-ui.json"));
+//        skin = new Skin(Gdx.files.internal("uiskin/skin/lgdxs-ui.json"));
+
+        skin = screenManager.getAssetLoader().getSkin();
 
         TextButton testButton = new TextButton("Test Screen", skin, "small1");
         TextButton quitButton = new TextButton("Quit", skin, "small2");
@@ -50,7 +53,7 @@ public class IntroScreen extends GameScreen {
         });
 
         Label screenLabel = new Label("Intro Screen", skin, "white");
-        screenLabel.setPosition(10, MainClass.HEIGHT - 20);
+        screenLabel.setPosition(10, MainClass.HEIGHT - 25);
 
         table.row().pad(3);
         table.add(testButton);

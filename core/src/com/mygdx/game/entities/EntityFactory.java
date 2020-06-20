@@ -38,7 +38,16 @@ public class EntityFactory {
 
         switch (type) {
 
-            case TEST_ENTITY:
+//            case TEST_ENTITY:
+//                entity = new Entity(new PlayerPhysicsComponent(), new PlayerGraphicsComponent());
+//                EntityConfig playerConfig = getEntityConfig(PLAYER_CONFIG_PATH);
+//                entity.setConfig(playerConfig);
+//                entity.setTexture(spritesheet);
+//                entity.sendMessage(Component.MESSAGE.STATE, json.toJson(entity.getConfig().getState()));
+//                entity.init();
+//                return entity;
+
+            case PLAYER:
                 entity = new Entity(new PlayerPhysicsComponent(), new PlayerGraphicsComponent());
                 EntityConfig playerConfig = getEntityConfig(PLAYER_CONFIG_PATH);
                 entity.setConfig(playerConfig);
@@ -47,10 +56,6 @@ public class EntityFactory {
                 entity.init();
                 return entity;
 
-//            case PLAYER:
-//                return null;
-//                break;
-//
             case ENEMY:
                 entity = new Entity(new PlayerPhysicsComponent(), new PlayerGraphicsComponent());
                 EntityConfig enemyConfig = getEntityConfig(ENEMY_CONFIG_PATH);
