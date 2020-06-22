@@ -10,6 +10,7 @@ public abstract class GraphicsComponent implements Component, Disposable {
 
     protected TextureRegion region;
     protected int drawSize = 64;
+    protected int regionSize = 32;
 
     public GraphicsComponent() {
 
@@ -21,7 +22,7 @@ public abstract class GraphicsComponent implements Component, Disposable {
         int x = (int) (entity.getTextureRegionPos().x);
         int y = (int) (entity.getTextureRegionPos().y);
 
-        region = new TextureRegion(spriteSheet, x, y, drawSize, drawSize);
+        region = new TextureRegion(spriteSheet, x, y, regionSize, regionSize);
     }
 
 }

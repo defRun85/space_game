@@ -15,7 +15,8 @@ public class EntityFactory {
 
 //    protected final String SPRITESHEET_PATH = "gfx/spritesheet.png";
 
-    protected final String SPRITESHEET_PATH = "gfx/space_sprite_sheet.png";
+//    protected final String SPRITESHEET_PATH = "gfx/space_sprite_sheet.png";
+    protected final String SPRITESHEET_PATH = "gfx/space_proto_sheet.png";
 
     protected final static String PLAYER_CONFIG_PATH = "json/player.json";
     protected final static String ENEMY_CONFIG_PATH = "json/enemy.json";
