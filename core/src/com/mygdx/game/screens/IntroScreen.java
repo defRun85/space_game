@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.AssetLoader;
 import com.mygdx.game.MainClass;
@@ -32,11 +33,8 @@ public class IntroScreen extends GameScreen {
 
         skin = screenManager.getAssetLoader().getSkin();
 
-        TextButton testButton = new TextButton("Test Screen", skin, "small1");
+        TextButton testButton = new TextButton("Test Screen", skin, "corner-bs-bl1");
         TextButton quitButton = new TextButton("Quit", skin, "small2");
-
-        testButton.setHeight(10);
-        quitButton.setHeight(10);
 
         testButton.addListener(new ClickListener() {
 
@@ -57,9 +55,10 @@ public class IntroScreen extends GameScreen {
 
         table.row().pad(3);
         table.add(testButton);
-        table.add(quitButton);
+        table.add(quitButton).align(Align.bottom);
 
         Gdx.input.setInputProcessor(stage);
+
 
         stage.addActor(table);
         stage.addActor(screenLabel);
