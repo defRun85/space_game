@@ -41,7 +41,7 @@ public class IntroScreen extends GameScreen {
         fontSub = screenManager.getAssetLoader().getFont();
         fontSub.setColor(c);
 
-        Label screenLabel = new Label("Intro Screen", skin, "default");
+        final Label screenLabel = new Label("Intro Screen", skin, "default");
         screenLabel.setPosition(10, MainClass.HEIGHT - 25);
 
 
@@ -59,10 +59,21 @@ public class IntroScreen extends GameScreen {
             }
         });
 
+        TextButton newGameButton = new TextButton("New Game", skin, "default");
+        newGameButton.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                screenManager.setScreen(ScreenManager.ScreenType.MAIN_GAME_SCREEN);
+            }
+        });
+
         Gdx.input.setInputProcessor(stage);
 
-        table.add(quitButton);
+        table.row();
         table.add(testButton);
+        table.row();
+        table.add(newGameButton);
+        table.row();
+        table.add(quitButton);
 
         stage.addActor(table);
         stage.addActor(screenLabel);

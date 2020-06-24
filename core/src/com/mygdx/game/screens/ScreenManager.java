@@ -12,6 +12,7 @@ public class ScreenManager {
 
     protected TestScreen testScreen;
     protected IntroScreen introScreen;
+    protected MainGameScreen mainGameScreen;
 
     public enum ScreenType {
 
@@ -53,8 +54,14 @@ public class ScreenManager {
                 }
                 break;
 
-//            case MAIN_GAME_SCREEN:
-//                break;
+            case MAIN_GAME_SCREEN:
+                if ( mainGameScreen == null ) {
+                    mainGameScreen = new MainGameScreen(batch, this);
+                    parent.setScreen(mainGameScreen);
+                } else {
+                    parent.setScreen(mainGameScreen);
+                }
+                break;
 
             default:
                 break;

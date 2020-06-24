@@ -1,7 +1,6 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -42,10 +41,6 @@ public class AssetLoader {
         parameter.size = _size;
         setFont(generator.generateFont(parameter));
         generator.dispose();
-    }
-
-    public void loadSpritesheet(String _sheetPath) {
-
     }
 
     public Skin getSkin() {
