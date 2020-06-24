@@ -47,6 +47,7 @@ public class EntityFactory {
             case PLAYER:
                 entity = new Entity(new PlayerPhysicsComponent(), new PlayerGraphicsComponent());
                 EntityConfig playerConfig = getEntityConfig(PLAYER_CONFIG_PATH);
+                entity.initInput(entity);
                 entity.setConfig(playerConfig);
                 entity.setTexture(screenManager.getAssetLoader().getSpritesheet());
                 entity.sendMessage(Component.MESSAGE.STATE, json.toJson(entity.getConfig().getState()));

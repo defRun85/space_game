@@ -1,5 +1,6 @@
 package com.mygdx.game.entities;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -7,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.components.Component;
 import com.mygdx.game.components.GraphicsComponent;
 import com.mygdx.game.components.PhysicsComponent;
+import com.mygdx.game.input.PlayerInput;
 
 import java.util.ArrayList;
 
@@ -19,6 +21,8 @@ public class Entity {
     protected ArrayList<Component> components;
     protected PhysicsComponent physicsComponent;
     protected GraphicsComponent graphicsComponent;
+
+    protected PlayerInput playerInput;
 
     public enum State {
         MOVE_LEFT,
@@ -45,12 +49,17 @@ public class Entity {
         this.physicsComponent.setCollisionBox(this);
     }
 
+    public void initInput(Entity entity) {
+        playerInput = new PlayerInput(entity);
+        Gdx.input.setInputProcessor(playerInput);
+    }
+
     public void update(float delta) {
-        physicsComponent.update(delta, this);
+        physicsComponent.update(this, delta);
     }
 
     public void update(float delta, ArrayList<Entity> entities) {
-        physicsComponent.update(delta, this, entities);
+        physicsComponent.update(this, delta, entities);
     }
 
     public void render(SpriteBatch batch) {

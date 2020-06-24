@@ -12,18 +12,53 @@ public class PlayerPhysicsComponent extends PhysicsComponent {
 
     }
 
+    // PLAYER UPDATE.
     @Override
-    public void update(float delta, Entity entity, ArrayList<Entity> entities) {
+    public void update(Entity entity, float delta, ArrayList<Entity> entities) {
+
+        switch (currentState) {
+            case MOVE_LEFT:
+                entity.getPosition().add(-vel, 0);
+                break;
+            case MOVE_RIGHT:
+                entity.getPosition().add(vel, 0);
+                break;
+            default:
+                break;
+        }
+
+        isCollisionWithEntity(entity, entities);
+
+        checkBoundaries(entity);
+        updateCollisionBox();
+
+
+
+    }
+
+
+    // stop using this for player when enemies have been implemented.
+    @Override
+    public void update(Entity entity, float delta) {
+
+        switch (currentState) {
+            case MOVE_LEFT:
+                entity.getPosition().add(-vel, 0);
+                break;
+            case MOVE_RIGHT:
+                entity.getPosition().add(vel, 0);
+                break;
+            default:
+                break;
+        }
+
+        checkBoundaries(entity);
+        updateCollisionBox();
 
     }
 
     @Override
-    public void update(float delta, Entity entity) {
-
-    }
-
-    @Override
-    public void checkBoundaries() {
+    public void checkBoundaries(Entity entity) {
 
     }
 
@@ -59,6 +94,11 @@ public class PlayerPhysicsComponent extends PhysicsComponent {
                 break;
 
         }
+
+    }
+
+    @Override
+    public void dispose() {
 
     }
 }

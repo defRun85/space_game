@@ -18,6 +18,7 @@ public class TestScreen extends GameScreen {
 
 
     protected Entity player;
+    protected Entity enemy;
 
     public TestScreen(SpriteBatch _batch, ScreenManager _screenManager) {
         super(_batch, _screenManager);
@@ -32,7 +33,7 @@ public class TestScreen extends GameScreen {
         stage.addActor(screenLabel);
 
         player = factory.getEntity(EntityFactory.EntityType.PLAYER);
-
+        enemy = factory.getEntity(EntityFactory.EntityType.ENEMY);
     }
 
     @Override
@@ -44,7 +45,7 @@ public class TestScreen extends GameScreen {
     public void update(float delta) {
 
         player.update(delta);
-
+        enemy.update(delta);
         stage.act();
     }
 
@@ -61,6 +62,7 @@ public class TestScreen extends GameScreen {
         batch.draw(background, 0, 0);
 
         player.render(batch);
+        enemy.render(batch);
 
         batch.end();
 
