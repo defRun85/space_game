@@ -21,12 +21,12 @@ public class TestScreen extends GameScreen {
 
     public TestScreen(SpriteBatch _batch, ScreenManager _screenManager) {
         super(_batch, _screenManager);
-        factory = new EntityFactory();
+        factory = new EntityFactory(_screenManager);
 
         stage = new Stage();
         skin = screenManager.getAssetLoader().getSkin();
 
-        Label screenLabel = new Label("Test Screen", skin, "white");
+        Label screenLabel = new Label("Test Screen", skin, "default");
         screenLabel.setPosition(10, MainClass.HEIGHT - 25);
 
         stage.addActor(screenLabel);

@@ -6,17 +6,13 @@ import com.badlogic.gdx.utils.Json;
 import com.mygdx.game.components.Component;
 import com.mygdx.game.components.PlayerGraphicsComponent;
 import com.mygdx.game.components.PlayerPhysicsComponent;
+import com.mygdx.game.screens.ScreenManager;
 
 public class EntityFactory {
 
     private Json json = new Json();
 
-    protected Texture spritesheet;
-
-//    protected final String SPRITESHEET_PATH = "gfx/spritesheet.png";
-
-//    protected final String SPRITESHEET_PATH = "gfx/space_sprite_sheet.png";
-    protected final String SPRITESHEET_PATH = "gfx/space_proto_sheet.png";
+    protected ScreenManager screenManager;
 
     protected final static String PLAYER_CONFIG_PATH = "json/player.json";
     protected final static String ENEMY_CONFIG_PATH = "json/enemy.json";
@@ -29,8 +25,8 @@ public class EntityFactory {
 
     }
 
-    public EntityFactory() {
-        spritesheet = new Texture(Gdx.files.internal(SPRITESHEET_PATH));
+    public EntityFactory(ScreenManager _screenManager) {
+        this.screenManager = _screenManager;
     }
 
     public Entity getEntity(EntityType type) {
@@ -52,7 +48,7 @@ public class EntityFactory {
                 entity = new Entity(new PlayerPhysicsComponent(), new PlayerGraphicsComponent());
                 EntityConfig playerConfig = getEntityConfig(PLAYER_CONFIG_PATH);
                 entity.setConfig(playerConfig);
-                entity.setTexture(spritesheet);
+                entity.setTexture(screenManager.getAssetLoader().getSpritesheet());
                 entity.sendMessage(Component.MESSAGE.STATE, json.toJson(entity.getConfig().getState()));
                 entity.init();
                 return entity;
@@ -61,7 +57,7 @@ public class EntityFactory {
                 entity = new Entity(new PlayerPhysicsComponent(), new PlayerGraphicsComponent());
                 EntityConfig enemyConfig = getEntityConfig(ENEMY_CONFIG_PATH);
                 entity.setConfig(enemyConfig);
-                entity.setTexture(spritesheet);
+                entity.setTexture(screenManager.getAssetLoader().getSpritesheet());
                 entity.sendMessage(Component.MESSAGE.STATE, json.toJson(entity.getConfig().getState()));
                 entity.init();
                 return entity;

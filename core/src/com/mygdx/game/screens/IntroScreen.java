@@ -1,6 +1,8 @@
 package com.mygdx.game.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -9,9 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.utils.Align;
-import com.mygdx.game.AssetLoader;
 import com.mygdx.game.MainClass;
 
 public class IntroScreen extends GameScreen {
@@ -19,7 +19,7 @@ public class IntroScreen extends GameScreen {
     protected Skin skin;
     protected Stage stage;
     protected Table table;
-
+    protected BitmapFont fontMain, fontSub;
 
     public IntroScreen(SpriteBatch _batch, final ScreenManager _screenManager) {
         super(_batch, _screenManager);
@@ -27,38 +27,42 @@ public class IntroScreen extends GameScreen {
         stage = new Stage();
         table = new Table();
 
-        table.align(Align.bottomLeft);
-
-//        skin = new Skin(Gdx.files.internal("uiskin/skin/lgdxs-ui.json"));
+        table.setFillParent(true);
 
         skin = screenManager.getAssetLoader().getSkin();
+        Color c = new Color(60f/255f,179f/255f,113f/255f, 255);
+        screenManager.getAssetLoader().loadFont("fonts/pandora.ttf", 48);
 
-        TextButton testButton = new TextButton("Test Screen", skin, "corner-bs-bl1");
-        TextButton quitButton = new TextButton("Quit", skin, "small2");
+        fontMain = screenManager.assetLoader.getFont();
+        fontMain.setColor(c);
 
-        testButton.addListener(new ClickListener() {
+        screenManager.getAssetLoader().loadFont("fonts/pandora.ttf", 18);
 
-            public void clicked(InputEvent event, float x, float y) {
-                screenManager.setScreen(ScreenManager.ScreenType.TEST_SCREEN);
-            }
+        fontSub = screenManager.getAssetLoader().getFont();
+        fontSub.setColor(c);
 
-        });
+        Label screenLabel = new Label("Intro Screen", skin, "default");
+        screenLabel.setPosition(10, MainClass.HEIGHT - 25);
 
+
+        TextButton quitButton = new TextButton("Quit", skin, "default");
         quitButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 System.exit(0);
             }
         });
 
-        Label screenLabel = new Label("Intro Screen", skin, "white");
-        screenLabel.setPosition(10, MainClass.HEIGHT - 25);
-
-        table.row().pad(3);
-        table.add(testButton);
-        table.add(quitButton).align(Align.bottom);
+        TextButton testButton = new TextButton("Test", skin, "default");
+        testButton.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                screenManager.setScreen(ScreenManager.ScreenType.TEST_SCREEN);
+            }
+        });
 
         Gdx.input.setInputProcessor(stage);
 
+        table.add(quitButton);
+        table.add(testButton);
 
         stage.addActor(table);
         stage.addActor(screenLabel);
@@ -72,7 +76,7 @@ public class IntroScreen extends GameScreen {
 
     @Override
     public void update(float delta) {
-        stage.act();
+
     }
 
     @Override
@@ -85,9 +89,12 @@ public class IntroScreen extends GameScreen {
 
         batch.draw(background, 0, 0);
 
+        fontMain.draw(batch, "Invaders", 160, MainClass.HEIGHT - 150);
+        fontSub.draw(batch, "from Space...", 250, MainClass.HEIGHT - 210);
+
         batch.end();
 
-
+        stage.act();
         stage.draw();
     }
 
