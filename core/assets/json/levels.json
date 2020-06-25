@@ -1,0 +1,20 @@
+[
+
+
+  {
+    "level" : 0,
+    "maxEnemies" : 6
+  },
+
+  {
+    "level" : 1,
+    "maxEnemies" : 6
+  },
+
+  {
+    "level" : 2,
+    "maxEnemies" : 12
+  }
+
+
+]

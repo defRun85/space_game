@@ -3,6 +3,7 @@
   "state" : "IDLE",
   "collisionBoxSize" : 48,
   "healthPoints" : 100,
+  "velocity" : 5.0,
 
   "textureRegionPos" : {
     "x" : 0,

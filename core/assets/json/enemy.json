@@ -3,6 +3,7 @@
   "state" : "MOVE_LEFT",
   "collisionBoxSize" : 48,
   "healthPoints" : 10,
+  "velocity" : 4.0,
 
   "textureRegionPos" : {
     "x" : 32,

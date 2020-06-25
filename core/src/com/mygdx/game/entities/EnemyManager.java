@@ -1,6 +1,5 @@
 package com.mygdx.game.entities;
 
-
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -76,9 +75,6 @@ public class EnemyManager {
         float leftXpos = getLeftEnemyXpos();
         float rightXpos = getRightEnemyXpos();
 
-//        System.out.println(leftXpos + " : " + rightXpos);
-
-        // move left or right based of leftXpos and rightXpos values.
         if ( leftXpos < boundary ) {
             Entity e = getLowestEnemy();
             if ( e.getPosition().y < layers.get(layerIndex) ) {
@@ -114,10 +110,6 @@ public class EnemyManager {
         if ( down ) {
             setEnemiesState(Component.MESSAGE.STATE, Entity.State.MOVE_DOWN.toString());
         }
-
-//        System.out.println("MR: " + right);
-//        System.out.println("ML: " + left);
-//        System.out.println("MD: " + down);
 
         for ( Entity enemy : enemies ) {
             enemy.update(delta);
@@ -186,19 +178,19 @@ public class EnemyManager {
 
 
     public int getMaxEnemies() {
-        return maxEnemies;
+        return this.maxEnemies;
     }
 
-    public void setMaxEnemies(int maxEnemies) {
-        this.maxEnemies = maxEnemies;
+    public void setMaxEnemies(int _maxEnemies) {
+        this.maxEnemies = _maxEnemies;
     }
 
     public Array<Entity> getEnemies() {
-        return enemies;
+        return this.enemies;
     }
 
-    public void setEnemies(Array<Entity> enemies) {
-        this.enemies = enemies;
+    public void setEnemies(Array<Entity> _enemies) {
+        this.enemies = _enemies;
     }
 
 }

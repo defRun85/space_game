@@ -14,7 +14,7 @@ public abstract class PhysicsComponent implements Component, Disposable {
     protected Json json = new Json();
 
     protected Vector2 pos;
-    protected float vel = 2.0f;
+    protected float vel = 5.0f;
 
     protected Rectangle collisionBox;
 

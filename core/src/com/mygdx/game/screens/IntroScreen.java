@@ -31,7 +31,7 @@ public class IntroScreen extends GameScreen {
 
         skin = screenManager.getAssetLoader().getSkin();
         Color c = new Color(60f/255f,179f/255f,113f/255f, 255);
-        screenManager.getAssetLoader().loadFont("fonts/pandora.ttf", 48);
+        screenManager.getAssetLoader().loadFont("fonts/pandora.ttf", 64);
 
         fontMain = screenManager.assetLoader.getFont();
         fontMain.setColor(c);
@@ -40,6 +40,8 @@ public class IntroScreen extends GameScreen {
 
         fontSub = screenManager.getAssetLoader().getFont();
         fontSub.setColor(c);
+
+
 
         final Label screenLabel = new Label("Intro Screen", skin, "default");
         screenLabel.setPosition(10, MainClass.HEIGHT - 25);
@@ -100,8 +102,8 @@ public class IntroScreen extends GameScreen {
 
         batch.draw(background, 0, 0);
 
-        fontMain.draw(batch, "Invaders", 160, MainClass.HEIGHT - 150);
-        fontSub.draw(batch, "from Space...", 250, MainClass.HEIGHT - 210);
+        fontMain.draw(batch, "Invaders", 120, MainClass.HEIGHT - 130);
+        fontSub.draw(batch, "from Space...", 300, MainClass.HEIGHT - 210);
 
         batch.end();
 

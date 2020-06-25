@@ -9,6 +9,7 @@ import com.mygdx.game.MainClass;
 import com.mygdx.game.entities.EnemyManager;
 import com.mygdx.game.entities.Entity;
 import com.mygdx.game.entities.EntityFactory;
+import com.mygdx.game.levels.LevelManager;
 
 public class TestScreen extends GameScreen {
 
@@ -22,6 +23,7 @@ public class TestScreen extends GameScreen {
 //    protected Entity enemy;
 
     protected EnemyManager enemyMgr;
+    protected LevelManager levelManager;
 
     public TestScreen(SpriteBatch _batch, ScreenManager _screenManager) {
         super(_batch, _screenManager);

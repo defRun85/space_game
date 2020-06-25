@@ -8,6 +8,7 @@ public class EntityConfig {
     protected Entity.State state;
 
     protected int healthPoints;
+    protected float velocity;
 
     protected Vector2 textureRegionPos;
     protected Vector2 startPosition;
@@ -62,5 +63,13 @@ public class EntityConfig {
 
     public void setHealthPoints(int _healthPoints) {
         this.healthPoints = _healthPoints;
+    }
+
+    public float getVelocity() {
+        return velocity;
+    }
+
+    public void setVelocity(float velocity) {
+        this.velocity = velocity;
     }
 }
