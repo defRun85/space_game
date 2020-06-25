@@ -1,5 +1,6 @@
 package com.mygdx.game.components;
 
+import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.entities.Entity;
 
 import java.util.ArrayList;
@@ -14,13 +15,15 @@ public class EnemyPhysicsComponent extends PhysicsComponent {
 
     // PLAYER UPDATE.
     @Override
-    public void update(Entity entity, float delta, ArrayList<Entity> _entities) {
+    public void update(Entity entity, float delta, Array<Entity> _entities) {
 
     }
 
     // ENEMY UPDATE.
     @Override
     public void update(Entity entity, float delta) {
+
+//        System.out.println(currentState);
 
         switch (currentState) {
 
@@ -40,7 +43,7 @@ public class EnemyPhysicsComponent extends PhysicsComponent {
 
         updateCollisionBox();
 
-        System.out.println(currentState);
+
 
     }
 
@@ -51,6 +54,9 @@ public class EnemyPhysicsComponent extends PhysicsComponent {
 
     @Override
     public void receiveMessage(String message) {
+
+//        System.out.println("Message Received!!");
+
         String[] string = message.split(TOKEN);
 
         int len = string.length;
@@ -60,11 +66,15 @@ public class EnemyPhysicsComponent extends PhysicsComponent {
             case 0:
                 return;
 
+            case 1:
+                return;
+
             case 2:
                 if ( string[0].equalsIgnoreCase(MESSAGE.STATE.toString()) ) {
                     currentState = json.fromJson(Entity.State.class, string[1]);
 //                    System.out.println(currentState);
                 }
+                break;
 
             default:
                 break;

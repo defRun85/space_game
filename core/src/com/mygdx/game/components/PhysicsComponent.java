@@ -2,6 +2,7 @@ package com.mygdx.game.components;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.Json;
 import com.mygdx.game.entities.Entity;
@@ -13,7 +14,7 @@ public abstract class PhysicsComponent implements Component, Disposable {
     protected Json json = new Json();
 
     protected Vector2 pos;
-    protected float vel = 6.0f;
+    protected float vel = 2.0f;
 
     protected Rectangle collisionBox;
 
@@ -21,12 +22,12 @@ public abstract class PhysicsComponent implements Component, Disposable {
         this.collisionBox = new Rectangle();
     }
 
-    public abstract void update(Entity entity, float delta, ArrayList<Entity> entities);
+    public abstract void update(Entity entity, float delta, Array<Entity> entities);
     public abstract void update(Entity entity, float delta);
 
     public abstract void checkBoundaries(Entity entity);
 
-    public boolean isCollisionWithEntity(Entity entity, ArrayList<Entity> entities) {
+    public boolean isCollisionWithEntity(Entity entity, Array<Entity> entities) {
         boolean isCollision = false;
 
         for ( Entity e : entities ) {

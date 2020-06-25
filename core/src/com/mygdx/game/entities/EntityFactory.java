@@ -3,9 +3,7 @@ package com.mygdx.game.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Json;
-import com.mygdx.game.components.Component;
-import com.mygdx.game.components.PlayerGraphicsComponent;
-import com.mygdx.game.components.PlayerPhysicsComponent;
+import com.mygdx.game.components.*;
 import com.mygdx.game.screens.ScreenManager;
 
 public class EntityFactory {
@@ -55,7 +53,7 @@ public class EntityFactory {
                 return entity;
 
             case ENEMY:
-                entity = new Entity(new PlayerPhysicsComponent(), new PlayerGraphicsComponent());
+                entity = new Entity(new EnemyPhysicsComponent(), new EnemyGraphicsComponent());
                 EntityConfig enemyConfig = getEntityConfig(ENEMY_CONFIG_PATH);
                 entity.setConfig(enemyConfig);
                 entity.setTexture(screenManager.getAssetLoader().getSpritesheet());

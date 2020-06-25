@@ -1,6 +1,7 @@
 package com.mygdx.game.components;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.MainClass;
 import com.mygdx.game.entities.Entity;
 
@@ -16,7 +17,7 @@ public class PlayerPhysicsComponent extends PhysicsComponent {
 
     // PLAYER UPDATE.
     @Override
-    public void update(Entity entity, float delta, ArrayList<Entity> entities) {
+    public void update(Entity entity, float delta, Array<Entity> entities) {
 
         switch (currentState) {
             case MOVE_LEFT:
@@ -37,7 +38,6 @@ public class PlayerPhysicsComponent extends PhysicsComponent {
 
 
     }
-
 
     // stop using this for player when enemies have been implemented.
     @Override
@@ -95,6 +95,10 @@ public class PlayerPhysicsComponent extends PhysicsComponent {
                 // set the current state of the entity.
                 if ( string[0].equalsIgnoreCase(MESSAGE.STATE.toString()) ) {
                     currentState = json.fromJson(Entity.State.class, string[1]);
+                }
+
+                if ( string[0].equalsIgnoreCase(MESSAGE.COLLISION.toString()) ) {
+                    System.out.println(string[1]);
                 }
 
                 break;

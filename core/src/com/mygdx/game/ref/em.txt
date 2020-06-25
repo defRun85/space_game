@@ -241,6 +241,8 @@ public class EnemyManager {
                     continue;
                 } else {
                     if ( o.getPosition().y < e.getPosition().y ) {
+
+                    }
                         entity = o;
                     } else {
                         entity = e;

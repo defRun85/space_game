@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.components.Component;
 import com.mygdx.game.components.GraphicsComponent;
 import com.mygdx.game.components.PhysicsComponent;
@@ -58,7 +59,7 @@ public class Entity {
         physicsComponent.update(this, delta);
     }
 
-    public void update(float delta, ArrayList<Entity> entities) {
+    public void update(float delta, Array<Entity> entities) {
         physicsComponent.update(this, delta, entities);
     }
 
@@ -75,8 +76,6 @@ public class Entity {
         }
 
     }
-
-    public State getState() { return this.getConfig().getState(); }
 
     public Vector2 getPosition() {
         return physicsComponent.getPosition();

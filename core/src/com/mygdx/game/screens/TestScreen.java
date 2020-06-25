@@ -50,8 +50,10 @@ public class TestScreen extends GameScreen {
     @Override
     public void update(float delta) {
 
-        player.update(delta);
-//        enemy.update(delta);
+        player.update(delta, enemyMgr.getEnemies());
+
+        enemyMgr.update(delta);
+
         stage.act();
     }
 
