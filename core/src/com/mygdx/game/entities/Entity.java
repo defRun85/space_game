@@ -76,6 +76,8 @@ public class Entity {
 
     }
 
+    public State getState() { return this.getConfig().getState(); }
+
     public Vector2 getPosition() {
         return physicsComponent.getPosition();
     }

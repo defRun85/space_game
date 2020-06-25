@@ -1,0 +1,252 @@
+package com.mygdx.game.entities;
+
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.MainClass;
+import com.mygdx.game.components.Component;
+
+import java.util.ArrayList;
+
+import static com.mygdx.game.components.Component.TOKEN;
+
+public class EnemyManager {
+
+    protected ArrayList<Entity> enemies;
+    protected ArrayList<Integer> layers;
+    protected int layerIndex = 0;
+    protected int maxEnemies;
+
+    protected int boundary = 50;
+
+
+    protected EntityFactory factory;
+
+    protected int enemyStartXPos, enemyStartYPos;
+
+    protected ShapeRenderer shapeRenderer;
+
+
+    public EnemyManager(EntityFactory _factory) {
+
+        this.factory = _factory;
+
+        enemyStartXPos = 51;
+        enemyStartYPos = MainClass.HEIGHT - 100;
+
+        enemies = new ArrayList<Entity>();
+
+        layers = new ArrayList<Integer>();
+
+        int layer_width = 20;
+        int n_layers = 25;
+
+        for ( int i = 1; i < n_layers; i++ ) {
+            int layerY = enemyStartYPos - ( i * layer_width );
+            layers.add(layerY);
+        }
+    }
+
+    public void initEnemies(int n) {
+        enemies = createEnemies(n);
+    }
+
+    public ArrayList<Entity> createEnemies(int _amount) {
+
+        ArrayList<Entity> _enemies = new ArrayList<Entity>();
+
+        Entity enemy = null;
+
+        for ( int i = 0; i < _amount; i++ ) {
+
+            enemy = factory.getEntity(EntityFactory.EntityType.ENEMY);
+
+            if ( enemyStartXPos > 291 ) {
+                enemyStartXPos = 51;
+                enemyStartYPos -= 40;
+            }
+
+            enemy.setPosition(new Vector2(enemyStartXPos, enemyStartYPos));
+//            enemy.setVelocity(6.0f);
+            enemyStartXPos += 40;
+            _enemies.add(enemy);
+
+        }
+
+        return _enemies;
+
+    }
+
+    public void addEnemy(Entity enemy) {
+        enemies.add(enemy);
+    }
+
+    public void removeEnemy(Entity enemy) {
+        enemies.remove(enemy);
+    }
+
+    public void setEnemiesState(Component.MESSAGE type, String message) {
+
+        String string = type + TOKEN + message;
+
+        for ( Entity enemy : enemies ) {
+            enemy.physicsComponent.receiveMessage(string);
+        }
+
+    }
+
+    public void update(float delta) {
+
+        for ( Entity enemy : enemies ) {
+            enemy.update(delta);
+        }
+
+        boolean moveDown = false;
+        boolean moveLeft = false;
+        boolean moveRight = false;
+
+        float lm = getLeftEnemyXpos();
+        float rm = getRightEnemyXpos();
+
+//        System.out.println("Left Xpos: " + lm);
+//        System.out.println("Right Xpos: " + rm);
+
+        if ( lm < boundary ) {
+            Entity entity = getTopEnemy();
+//            System.out.println(entity.getPosition().y);
+            if ( entity.getPosition().y < layers.get(layerIndex) ) {
+                layerIndex ++;
+                moveDown = false;
+                moveRight = true;
+                moveLeft = false;
+            } else {
+                moveDown = true;
+            }
+        }
+
+        if ( rm > MainClass.WIDTH - boundary - 32 ) {
+            Entity entity = getTopEnemy();
+//            System.out.println(entity.getPosition().y);
+            if ( entity.getPosition().y < layers.get(layerIndex) ) {
+                layerIndex ++;
+                moveDown = false;
+                moveRight = false;
+                moveLeft = true;
+            } else {
+                moveDown = true;
+            }
+        }
+
+        if ( moveRight ) {
+            setEnemiesState(Component.MESSAGE.STATE, Entity.State.MOVE_RIGHT.toString());
+        }
+
+        if ( moveLeft ) {
+            setEnemiesState(Component.MESSAGE.STATE, Entity.State.MOVE_LEFT.toString());
+        }
+
+        if ( moveDown ) {
+            setEnemiesState(Component.MESSAGE.STATE, Entity.State.MOVE_DOWN.toString());
+        }
+
+    }
+
+    public void render(SpriteBatch batch) {
+        for ( Entity enemy : enemies ) {
+            enemy.render(batch);
+        }
+    }
+
+    public ArrayList<Entity> getEnemies() {
+        return this.enemies;
+    }
+
+//    public void setEnemiesVelocity(float _velocity) {
+//        for ( Entity enemy : enemies ) {
+//            enemy.setVelocity(_velocity);
+//        }
+//    }
+
+    public float getLeftEnemyXpos() {
+
+        float leftXpos = 1000;
+        float temp = 0;
+
+        for ( Entity e : enemies ) {
+            for ( Entity o : enemies ) {
+                if ( e.equals(o) ) {
+                    continue;
+                } else {
+                    if ( e.getPosition().x < o.getPosition().x ) {
+                        temp = e.getPosition().x;
+                    } else {
+                        temp = o.getPosition().x;
+                    }
+                }
+            }
+            if ( temp < leftXpos ) {
+                leftXpos = temp;
+            }
+        }
+
+        return leftXpos;
+
+    }
+
+    public float getRightEnemyXpos() {
+
+        float rightXpos = 1000;
+        float temp = 0;
+
+        for ( Entity e : enemies ) {
+
+            for ( Entity o : enemies ) {
+
+                if ( e.equals(o) ) {
+                    continue;
+                } else {
+                    if ( e.getPosition().x > o.getPosition().x ) {
+                        temp = e.getPosition().x;
+                    } else {
+                        temp = o.getPosition().x;
+                    }
+                }
+            }
+            if ( temp < rightXpos ) {
+                rightXpos = temp;
+            }
+        }
+
+        return rightXpos;
+
+    }
+
+    public Entity getTopEnemy() {
+
+        Entity entity = null;
+        Entity temp = null;
+
+        for ( Entity e : enemies ) {
+            for ( Entity o : enemies ) {
+                if ( e.equals(o) ) {
+                    continue;
+                } else {
+                    if ( o.getPosition().y < e.getPosition().y ) {
+                        entity = o;
+                    }
+                }
+            }
+        }
+
+        return entity;
+
+    }
+
+    public int getMaxEnemies() {
+        return maxEnemies;
+    }
+
+    public void setMaxEnemies(int maxEnemies) {
+        this.maxEnemies = maxEnemies;
+    }
+}

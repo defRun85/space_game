@@ -9,7 +9,7 @@ import com.mygdx.game.entities.Entity;
 public abstract class GraphicsComponent implements Component, Disposable {
 
     protected TextureRegion region;
-    protected int drawSize = 64;
+    protected int drawSize = 48;
     protected int regionSize = 32;
 
     public GraphicsComponent() {

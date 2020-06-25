@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.game.MainClass;
+import com.mygdx.game.entities.EnemyManager;
 import com.mygdx.game.entities.Entity;
 import com.mygdx.game.entities.EntityFactory;
 
@@ -18,7 +19,9 @@ public class TestScreen extends GameScreen {
 
 
     protected Entity player;
-    protected Entity enemy;
+//    protected Entity enemy;
+
+    protected EnemyManager enemyManager;
 
     public TestScreen(SpriteBatch _batch, ScreenManager _screenManager) {
         super(_batch, _screenManager);
@@ -32,8 +35,12 @@ public class TestScreen extends GameScreen {
 
         stage.addActor(screenLabel);
 
+        enemyManager = new EnemyManager(factory);
+        enemyManager.setMaxEnemies(12);
+        enemyManager.initEnemies(enemyManager.getMaxEnemies());
+
         player = factory.getEntity(EntityFactory.EntityType.PLAYER);
-        enemy = factory.getEntity(EntityFactory.EntityType.ENEMY);
+//        enemy = factory.getEntity(EntityFactory.EntityType.ENEMY);
     }
 
     @Override
@@ -45,7 +52,8 @@ public class TestScreen extends GameScreen {
     public void update(float delta) {
 
         player.update(delta);
-        enemy.update(delta);
+//        enemy.update(delta);
+        enemyManager.update(delta);
         stage.act();
     }
 
@@ -62,7 +70,9 @@ public class TestScreen extends GameScreen {
         batch.draw(background, 0, 0);
 
         player.render(batch);
-        enemy.render(batch);
+//        enemy.render(batch);
+
+        enemyManager.render(batch);
 
         batch.end();
 

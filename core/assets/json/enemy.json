@@ -1,6 +1,6 @@
 {
   "entityID" : "enemy",
-  "state" : "IDLE",
+  "state" : "MOVE_RIGHT",
   "collisionBoxSize" : 64,
   "healthPoints" : 10,
 
