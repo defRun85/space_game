@@ -1,7 +1,7 @@
 {
   "entityID" : "enemy",
   "state" : "MOVE_RIGHT",
-  "collisionBoxSize" : 64,
+  "collisionBoxSize" : 48,
   "healthPoints" : 10,
 
   "textureRegionPos" : {

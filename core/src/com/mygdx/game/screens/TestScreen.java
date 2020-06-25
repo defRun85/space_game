@@ -21,7 +21,7 @@ public class TestScreen extends GameScreen {
     protected Entity player;
 //    protected Entity enemy;
 
-    protected EnemyManager enemyManager;
+    protected EnemyManager enemyMgr;
 
     public TestScreen(SpriteBatch _batch, ScreenManager _screenManager) {
         super(_batch, _screenManager);
@@ -35,12 +35,11 @@ public class TestScreen extends GameScreen {
 
         stage.addActor(screenLabel);
 
-        enemyManager = new EnemyManager(factory);
-        enemyManager.setMaxEnemies(12);
-        enemyManager.initEnemies(enemyManager.getMaxEnemies());
-
         player = factory.getEntity(EntityFactory.EntityType.PLAYER);
 //        enemy = factory.getEntity(EntityFactory.EntityType.ENEMY);
+        enemyMgr = new EnemyManager(factory);
+        enemyMgr.initEnemies();
+
     }
 
     @Override
@@ -53,7 +52,6 @@ public class TestScreen extends GameScreen {
 
         player.update(delta);
 //        enemy.update(delta);
-        enemyManager.update(delta);
         stage.act();
     }
 
@@ -71,8 +69,7 @@ public class TestScreen extends GameScreen {
 
         player.render(batch);
 //        enemy.render(batch);
-
-        enemyManager.render(batch);
+        enemyMgr.render(batch);
 
         batch.end();
 

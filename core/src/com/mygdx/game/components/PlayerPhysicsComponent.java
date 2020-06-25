@@ -1,5 +1,7 @@
 package com.mygdx.game.components;
 
+import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.MainClass;
 import com.mygdx.game.entities.Entity;
 
 import java.util.ArrayList;
@@ -60,6 +62,13 @@ public class PlayerPhysicsComponent extends PhysicsComponent {
     @Override
     public void checkBoundaries(Entity entity) {
 
+        int boundary = 50;
+
+        if ( entity.getPosition().x > MainClass.WIDTH - (boundary + entity.getCollisionBoxSize()) ) {
+            entity.setPosition(new Vector2(MainClass.WIDTH - (boundary + entity.getCollisionBoxSize()), entity.getPosition().y));
+        } else if ( entity.getPosition().x < boundary ) {
+            entity.setPosition(new Vector2(boundary, entity.getPosition().y));
+        }
     }
 
     @Override

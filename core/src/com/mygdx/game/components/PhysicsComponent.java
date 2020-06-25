@@ -16,7 +16,6 @@ public abstract class PhysicsComponent implements Component, Disposable {
     protected float vel = 6.0f;
 
     protected Rectangle collisionBox;
-    protected float collisionBoxSize = 64.0f;
 
     public PhysicsComponent() {
         this.collisionBox = new Rectangle();
