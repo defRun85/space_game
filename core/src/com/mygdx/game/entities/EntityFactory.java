@@ -19,7 +19,7 @@ public class EntityFactory {
 
         TEST_ENTITY,
         PLAYER,
-        ENEMY
+        ENEMY,
 
     }
 

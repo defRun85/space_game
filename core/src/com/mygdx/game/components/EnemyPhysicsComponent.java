@@ -9,6 +9,8 @@ public class EnemyPhysicsComponent extends PhysicsComponent {
 
     protected Entity.State currentState;
 
+    protected float velocity = 3.0f;
+
     public EnemyPhysicsComponent() {
 
     }
@@ -28,13 +30,13 @@ public class EnemyPhysicsComponent extends PhysicsComponent {
         switch (currentState) {
 
             case MOVE_RIGHT:
-                entity.getPosition().add(vel, 0);
+                entity.getPosition().add(velocity, 0);
                 break;
             case MOVE_LEFT:
-                entity.getPosition().add(-vel, 0);
+                entity.getPosition().add(-velocity, 0);
                 break;
             case MOVE_DOWN:
-                entity.getPosition().add(0, -vel);
+                entity.getPosition().add(0, -velocity);
                 break;
             default:
                 break;

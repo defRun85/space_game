@@ -11,6 +11,8 @@ public class PlayerPhysicsComponent extends PhysicsComponent {
 
     protected Entity.State currentState;
 
+    protected float velocity = 5.0f;
+
     public PlayerPhysicsComponent() {
 
     }
@@ -21,10 +23,10 @@ public class PlayerPhysicsComponent extends PhysicsComponent {
 
         switch (currentState) {
             case MOVE_LEFT:
-                entity.getPosition().add(-vel, 0);
+                entity.getPosition().add(-velocity, 0);
                 break;
             case MOVE_RIGHT:
-                entity.getPosition().add(vel, 0);
+                entity.getPosition().add(velocity, 0);
                 break;
             default:
                 break;
@@ -45,10 +47,10 @@ public class PlayerPhysicsComponent extends PhysicsComponent {
 
         switch (currentState) {
             case MOVE_LEFT:
-                entity.getPosition().add(-vel, 0);
+                entity.getPosition().add(-velocity, 0);
                 break;
             case MOVE_RIGHT:
-                entity.getPosition().add(vel, 0);
+                entity.getPosition().add(velocity, 0);
                 break;
             default:
                 break;
