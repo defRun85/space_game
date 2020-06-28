@@ -18,7 +18,7 @@ public class ProjectilePhysicsComponent extends PhysicsComponent {
 
     @Override
     public void update(Projectile projectile, float delta, Array<Entity> entities) {
-        projectile.getPosition().add(0, projectile.getVelocity());
+
     }
 
     @Override

@@ -14,7 +14,7 @@ public class Projectile {
     protected int collisionBoxSize;
     protected Vector2 textureRegionPos;
 
-    private final float velocity = 5.0f;
+    private final float velocity = 12.0f;
     private Vector2 position;
 
     protected ArrayList<Component> components;
@@ -33,6 +33,8 @@ public class Projectile {
     }
 
     public void update(float delta, Array<Entity> entities) {
+
+
 
         physicsComponent.update(this, delta, entities);
 

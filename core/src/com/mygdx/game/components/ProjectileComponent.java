@@ -28,6 +28,12 @@ public class ProjectileComponent implements Component{
             p.update(delta, entities);
         }
 
+        for ( int i = projectiles.size() - 1; i > 0; i-- ) {
+            if ( projectiles.get(i).getPosition().y > MainClass.HEIGHT ) {
+                removeProjectile(projectiles.get(i));
+            }
+        }
+
 //        if ( p.getPosition().y > MainClass.HEIGHT ) {
 //            removeProjectile(p);
 //        }

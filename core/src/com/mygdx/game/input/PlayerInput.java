@@ -26,14 +26,19 @@ public class PlayerInput implements InputProcessor {
                 player.sendMessage(Component.MESSAGE.STATE, Entity.State.MOVE_RIGHT.toString());
                 break;
 
-            case Input.Keys.SPACE:
-                player.sendMessage(Component.MESSAGE.FIRE, player.getPosition().toString());
-                break;
+//            case Input.Keys.SPACE:
+//                player.sendMessage(Component.MESSAGE.FIRE, player.getPosition().toString());
+//                break;
 
             default:
                 break;
 
         }
+
+        if ( keycode == Input.Keys.SPACE ) {
+            player.sendMessage(Component.MESSAGE.FIRE, player.getPosition().toString());
+        }
+
         return false;
     }
 
@@ -42,16 +47,16 @@ public class PlayerInput implements InputProcessor {
 
         switch (keycode) {
 
-//            case Input.Keys.A:
-//                player.setEnemiesState(Component.MESSAGE.SET_STATE, Entity.State.IDLE.toString());
-//                break;
-//
-//            case Input.Keys.D:
-//                player.setEnemiesState(Component.MESSAGE.SET_STATE, Entity.State.IDLE.toString());
-//                break;
+            case Input.Keys.A:
+                player.sendMessage(Component.MESSAGE.STATE, Entity.State.IDLE.toString());
+                break;
+
+            case Input.Keys.D:
+                player.sendMessage(Component.MESSAGE.STATE, Entity.State.IDLE.toString());
+                break;
 
             default:
-                player.sendMessage(Component.MESSAGE.STATE, Entity.State.IDLE.toString());
+//                player.sendMessage(Component.MESSAGE.STATE, Entity.State.IDLE.toString());
                 break;
 
         }

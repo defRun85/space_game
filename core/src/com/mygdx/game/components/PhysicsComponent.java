@@ -46,6 +46,23 @@ public abstract class PhysicsComponent implements Component, Disposable {
         return isCollision;
     }
 
+    public boolean isCollisionWithEntity(Projectile projectile, Array<Entity> entities) {
+        boolean isCollision = false;
+
+        for ( Entity e : entities ) {
+
+            if ( projectile.getCollisonBox().overlaps(e.getCollisonBox()) ) {
+                projectile.sendMessage(MESSAGE.COLLISION, "Entity/Entity Collision Detected");
+                isCollision = true;
+            } else {
+                isCollision = false;
+            }
+
+        }
+
+        return isCollision;
+    }
+
     public Rectangle getCollisionBox() {
         return this.collisionBox;
     }
