@@ -3,13 +3,11 @@ package com.mygdx.game.screens;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.game.MainClass;
 import com.mygdx.game.entities.EnemyManager;
 import com.mygdx.game.entities.Entity;
 import com.mygdx.game.entities.EntityFactory;
-import com.mygdx.game.entities.Projectile;
 import com.mygdx.game.levels.LevelManager;
 
 public class TestScreen extends GameScreen {
@@ -22,8 +20,6 @@ public class TestScreen extends GameScreen {
 
     protected Entity player;
 //    protected Entity enemy;
-
-    protected Entity projectile;
 
     protected EnemyManager enemyMgr;
     protected LevelManager levelManager;
@@ -45,8 +41,6 @@ public class TestScreen extends GameScreen {
         enemyMgr = new EnemyManager(factory);
         enemyMgr.initEnemies();
 
-        projectile = factory.getEntity(EntityFactory.EntityType.PROJECTILE);
-
     }
 
     @Override
@@ -61,7 +55,7 @@ public class TestScreen extends GameScreen {
 
         enemyMgr.update(delta);
 
-        projectile.update(delta);
+
 
         stage.act();
     }
@@ -81,8 +75,6 @@ public class TestScreen extends GameScreen {
         player.render(batch);
 //        enemy.render(batch);
         enemyMgr.render(batch);
-
-        projectile.render(batch);
 
         batch.end();
 
