@@ -27,8 +27,7 @@ public class PlayerInput implements InputProcessor {
                 break;
 
             case Input.Keys.SPACE:
-                System.out.println("Player Firing!!");
-
+                player.sendMessage(Component.MESSAGE.FIRE, player.getPosition().toString());
                 break;
 
             default:

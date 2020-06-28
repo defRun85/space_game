@@ -55,8 +55,6 @@ public class TestScreen extends GameScreen {
 
         enemyMgr.update(delta);
 
-
-
         stage.act();
     }
 
@@ -73,7 +71,7 @@ public class TestScreen extends GameScreen {
         batch.draw(background, 0, 0);
 
         player.render(batch);
-//        enemy.render(batch);
+
         enemyMgr.render(batch);
 
         batch.end();

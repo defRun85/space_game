@@ -7,7 +7,8 @@ public interface Component {
     enum MESSAGE {
         TEST_MESSAGE,
         COLLISION,
-        STATE
+        STATE,
+        FIRE
     }
 
     void receiveMessage(String message);

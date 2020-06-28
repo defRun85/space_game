@@ -43,7 +43,7 @@ public class EntityFactory {
 //                return entity;
 
             case PLAYER:
-                entity = new Entity(new PlayerPhysicsComponent(), new PlayerGraphicsComponent());
+                entity = new Entity(new PlayerPhysicsComponent(), new PlayerGraphicsComponent(), new ProjectileComponent());
                 EntityConfig playerConfig = getEntityConfig(PLAYER_CONFIG_PATH);
                 entity.initInput(entity);
                 entity.setConfig(playerConfig);

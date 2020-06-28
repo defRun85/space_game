@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
 import com.mygdx.game.entities.Entity;
+import com.mygdx.game.entities.Projectile;
 
 public abstract class GraphicsComponent implements Component, Disposable {
 
@@ -17,6 +18,7 @@ public abstract class GraphicsComponent implements Component, Disposable {
     }
 
     public abstract void render(SpriteBatch batch, Entity _entity);
+    public abstract void render(SpriteBatch batch, Projectile _projectile);
 
     public void setTexture(Texture spriteSheet, Entity entity) {
         int x = (int) (entity.getTextureRegionPos().x);

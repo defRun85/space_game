@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.Json;
 import com.mygdx.game.entities.Entity;
+import com.mygdx.game.entities.Projectile;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ public abstract class PhysicsComponent implements Component, Disposable {
 
     public abstract void update(Entity entity, float delta, Array<Entity> entities);
     public abstract void update(Entity entity, float delta);
+    public abstract void update(Projectile projectile, float delta, Array<Entity> entities);
 
     public abstract void checkBoundaries(Entity entity);
 

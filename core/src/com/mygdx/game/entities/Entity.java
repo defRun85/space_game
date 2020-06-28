@@ -6,9 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.game.components.Component;
-import com.mygdx.game.components.GraphicsComponent;
-import com.mygdx.game.components.PhysicsComponent;
+import com.mygdx.game.components.*;
 import com.mygdx.game.input.PlayerInput;
 
 import java.util.ArrayList;
@@ -22,6 +20,7 @@ public class Entity {
     protected ArrayList<Component> components;
     protected PhysicsComponent physicsComponent;
     protected GraphicsComponent graphicsComponent;
+    protected ProjectileComponent projectileComponent;
 
     protected PlayerInput playerInput;
 
@@ -31,6 +30,20 @@ public class Entity {
         MOVE_UP,
         MOVE_DOWN,
         IDLE
+    }
+
+    public Entity(PhysicsComponent _physicsComponent, GraphicsComponent _graphicsComponent, ProjectileComponent _projectileComponent) {
+
+        this.components = new ArrayList<Component>();
+
+        physicsComponent = _physicsComponent;
+        graphicsComponent = _graphicsComponent;
+        projectileComponent = _projectileComponent;
+
+        components.add(physicsComponent);
+        components.add(graphicsComponent);
+        components.add(projectileComponent);
+
     }
 
     public Entity(PhysicsComponent _physicsComponent, GraphicsComponent _graphicsComponent) {
@@ -61,10 +74,16 @@ public class Entity {
 
     public void update(float delta, Array<Entity> entities) {
         physicsComponent.update(this, delta, entities);
+        projectileComponent.update(delta, entities);
     }
 
     public void render(SpriteBatch batch) {
         this.graphicsComponent.render(batch, this);
+
+        if ( projectileComponent != null ) {
+            projectileComponent.render(batch);
+        }
+
     }
 
     public void sendMessage(Component.MESSAGE type, String message) {
@@ -104,5 +123,6 @@ public class Entity {
     public void setTexture(Texture spritesheet) {
         this.graphicsComponent.setTexture(spritesheet, this);
     }
+
 
 }
