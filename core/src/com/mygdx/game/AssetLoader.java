@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 public class AssetLoader {
 
     protected Skin skin;
-    protected Texture spritesheet;
+    protected static Texture spritesheet;
 
     protected BitmapFont font;
 
@@ -51,7 +51,7 @@ public class AssetLoader {
         this.skin = skin;
     }
 
-    public Texture getSpritesheet() {
+    public static Texture getSpritesheet() {
         return spritesheet;
     }
 

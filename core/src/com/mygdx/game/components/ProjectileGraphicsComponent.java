@@ -1,12 +1,11 @@
 package com.mygdx.game.components;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.entities.Entity;
 import com.mygdx.game.entities.Projectile;
 
 public class ProjectileGraphicsComponent extends GraphicsComponent {
-
-
 
     @Override
     public void render(SpriteBatch batch, Entity _entity) {

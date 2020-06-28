@@ -1,8 +1,6 @@
 {
   "entityID" : "projectile",
-  "state" : "MOVE_UP",
   "collisionBoxSize" : 48,
-  "velocity" : 5.0,
 
   "textureRegionPos" : {
     "x" : 64,

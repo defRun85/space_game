@@ -27,4 +27,11 @@ public abstract class GraphicsComponent implements Component, Disposable {
         region = new TextureRegion(spriteSheet, x, y, regionSize, regionSize);
     }
 
+    public void setTexture(Texture spriteSheet, Projectile projectile) {
+        int x = (int) (projectile.getTextureRegionPos().x);
+        int y = (int) (projectile.getTextureRegionPos().y);
+
+        region = new TextureRegion(spriteSheet, x, y, regionSize, regionSize);
+    }
+
 }
