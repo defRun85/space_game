@@ -6,9 +6,6 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.Json;
 import com.mygdx.game.entities.Entity;
-import com.mygdx.game.entities.Projectile;
-
-import java.util.ArrayList;
 
 public abstract class PhysicsComponent implements Component, Disposable {
 
@@ -25,7 +22,6 @@ public abstract class PhysicsComponent implements Component, Disposable {
 
     public abstract void update(Entity entity, float delta, Array<Entity> entities);
     public abstract void update(Entity entity, float delta);
-    public abstract void update(Projectile projectile, float delta, Array<Entity> entities);
 
     public abstract void checkBoundaries(Entity entity);
 
@@ -34,25 +30,8 @@ public abstract class PhysicsComponent implements Component, Disposable {
 
         for ( Entity e : entities ) {
 
-            if ( entity.getCollisonBox().overlaps(e.getCollisonBox()) ) {
+            if ( entity.getCollisionBox().overlaps(e.getCollisionBox()) ) {
                 entity.sendMessage(MESSAGE.COLLISION, "Entity/Entity Collision Detected");
-                isCollision = true;
-            } else {
-                isCollision = false;
-            }
-
-        }
-
-        return isCollision;
-    }
-
-    public boolean isCollisionWithEntity(Projectile projectile, Array<Entity> entities) {
-        boolean isCollision = false;
-
-        for ( Entity e : entities ) {
-
-            if ( projectile.getCollisonBox().overlaps(e.getCollisonBox()) ) {
-                projectile.sendMessage(MESSAGE.COLLISION, "Entity/Entity Collision Detected");
                 isCollision = true;
             } else {
                 isCollision = false;

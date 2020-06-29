@@ -20,7 +20,6 @@ public class Entity {
     protected ArrayList<Component> components;
     protected PhysicsComponent physicsComponent;
     protected GraphicsComponent graphicsComponent;
-    protected ProjectileComponent projectileComponent;
 
     protected PlayerInput playerInput;
 
@@ -30,20 +29,6 @@ public class Entity {
         MOVE_UP,
         MOVE_DOWN,
         IDLE
-    }
-
-    public Entity(PhysicsComponent _physicsComponent, GraphicsComponent _graphicsComponent, ProjectileComponent _projectileComponent) {
-
-        this.components = new ArrayList<Component>();
-
-        physicsComponent = _physicsComponent;
-        graphicsComponent = _graphicsComponent;
-        projectileComponent = _projectileComponent;
-
-        components.add(physicsComponent);
-        components.add(graphicsComponent);
-        components.add(projectileComponent);
-
     }
 
     public Entity(PhysicsComponent _physicsComponent, GraphicsComponent _graphicsComponent) {
@@ -68,22 +53,20 @@ public class Entity {
         Gdx.input.setInputProcessor(playerInput);
     }
 
+    public String getEntityID() {
+        return this.getConfig().getEntityID();
+    }
+
     public void update(float delta) {
         physicsComponent.update(this, delta);
     }
 
     public void update(float delta, Array<Entity> entities) {
         physicsComponent.update(this, delta, entities);
-        projectileComponent.update(delta, entities);
     }
 
     public void render(SpriteBatch batch) {
         this.graphicsComponent.render(batch, this);
-
-        if ( projectileComponent != null ) {
-            projectileComponent.render(batch);
-        }
-
     }
 
     public void sendMessage(Component.MESSAGE type, String message) {
@@ -106,7 +89,7 @@ public class Entity {
         return this.config.getCollisionBoxSize();
     }
 
-    public Rectangle getCollisonBox() {
+    public Rectangle getCollisionBox() {
         return this.physicsComponent.getCollisionBox();
     }
 
