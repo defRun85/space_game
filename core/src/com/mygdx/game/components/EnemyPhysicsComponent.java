@@ -43,8 +43,6 @@ public class EnemyPhysicsComponent extends PhysicsComponent {
 
         updateCollisionBox();
 
-
-
     }
 
     @Override
@@ -70,6 +68,12 @@ public class EnemyPhysicsComponent extends PhysicsComponent {
                 return;
 
             case 2:
+                if ( string[0].equalsIgnoreCase(MESSAGE.COLLISION.toString()) ) {
+                    System.out.println("Enemy : " + string[1]);
+//                    System.out.println(currentState);
+                }
+
+
                 if ( string[0].equalsIgnoreCase(MESSAGE.STATE.toString()) ) {
                     currentState = json.fromJson(Entity.State.class, string[1]);
 //                    System.out.println(currentState);

@@ -36,7 +36,7 @@ public class PlayerInput implements InputProcessor {
         }
 
         if ( keycode == Input.Keys.SPACE ) {
-            player.sendMessage(Component.MESSAGE.FIRE, player.getPosition().toString());
+            player.sendMessage(Component.MESSAGE.FIRE, "Firing!!");
         }
 
         return false;

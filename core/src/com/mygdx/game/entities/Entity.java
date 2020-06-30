@@ -22,6 +22,7 @@ public class Entity {
     protected GraphicsComponent graphicsComponent;
 
     protected PlayerInput playerInput;
+    protected ProjectileManager projectileManager;
 
     public enum State {
         MOVE_LEFT,
@@ -46,9 +47,10 @@ public class Entity {
     public void init() {
         setPosition(this.config.getStartPosition());
         this.physicsComponent.setCollisionBox(this);
+        projectileManager = new ProjectileManager(this);
     }
 
-    public void initInput(Entity entity) {
+    public void initPlayer(Entity entity) {
         playerInput = new PlayerInput(entity);
         Gdx.input.setInputProcessor(playerInput);
     }
@@ -63,10 +65,12 @@ public class Entity {
 
     public void update(float delta, Array<Entity> entities) {
         physicsComponent.update(this, delta, entities);
+        projectileManager.update(delta, entities);
     }
 
     public void render(SpriteBatch batch) {
         this.graphicsComponent.render(batch, this);
+        projectileManager.render(batch);
     }
 
     public void sendMessage(Component.MESSAGE type, String message) {
@@ -76,6 +80,8 @@ public class Entity {
         for ( Component component : components ) {
             component.receiveMessage(messageString);
         }
+
+        projectileManager.receiveMessage(messageString);
 
     }
 

@@ -98,7 +98,7 @@ public class PlayerPhysicsComponent extends PhysicsComponent {
                 }
 
                 if ( string[0].equalsIgnoreCase(MESSAGE.COLLISION.toString()) ) {
-                    System.out.println(string[1]);
+                    System.out.println("Player : " + string[1]);
                 }
 
                 break;

@@ -15,12 +15,14 @@ public class EntityFactory {
 
     protected final static String PLAYER_CONFIG_PATH = "json/player.json";
     protected final static String ENEMY_CONFIG_PATH = "json/enemy.json";
+    protected final static String PROJECTILE_CONFIG_PATH = "json/projectile.json";
 
     public enum EntityType {
 
         TEST_ENTITY,
         PLAYER,
         ENEMY,
+        PROJECTILE
 
     }
 
@@ -46,11 +48,11 @@ public class EntityFactory {
             case PLAYER:
                 entity = new Entity(new PlayerPhysicsComponent(), new PlayerGraphicsComponent());
                 EntityConfig playerConfig = getEntityConfig(PLAYER_CONFIG_PATH);
-                entity.initInput(entity);
+                entity.initPlayer(entity);
                 entity.setConfig(playerConfig);
                 entity.setTexture(AssetLoader.getSpritesheet());
-                entity.sendMessage(Component.MESSAGE.STATE, json.toJson(entity.getConfig().getState()));
                 entity.init();
+                entity.sendMessage(Component.MESSAGE.STATE, json.toJson(entity.getConfig().getState()));
                 return entity;
 
             case ENEMY:
@@ -58,8 +60,8 @@ public class EntityFactory {
                 EntityConfig enemyConfig = getEntityConfig(ENEMY_CONFIG_PATH);
                 entity.setConfig(enemyConfig);
                 entity.setTexture(AssetLoader.getSpritesheet() );
-                entity.sendMessage(Component.MESSAGE.STATE, json.toJson(entity.getConfig().getState()));
                 entity.init();
+                entity.sendMessage(Component.MESSAGE.STATE, json.toJson(entity.getConfig().getState()));
                 return entity;
 
             default:

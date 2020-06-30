@@ -3,6 +3,7 @@ package com.mygdx.game.screens;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.AssetLoader;
 import com.mygdx.game.MainClass;
+import com.mygdx.game.entities.EntityFactory;
 
 public class ScreenManager {
 
@@ -13,6 +14,8 @@ public class ScreenManager {
     protected TestScreen testScreen;
     protected IntroScreen introScreen;
     protected MainGameScreen mainGameScreen;
+
+    protected GameScreen currentScreen;
 
     public enum ScreenType {
 
@@ -39,8 +42,10 @@ public class ScreenManager {
             case TEST_SCREEN:
                 if ( testScreen == null ) {
                     testScreen = new TestScreen(batch, this);
+                    currentScreen = testScreen;
                     parent.setScreen(testScreen);
                 } else {
+                    currentScreen = testScreen;
                     parent.setScreen(testScreen);
                 }
                 break;
@@ -48,8 +53,10 @@ public class ScreenManager {
             case INTRO_SCREEN:
                 if ( introScreen == null ) {
                     introScreen = new IntroScreen(batch, this);
+                    currentScreen = introScreen;
                     parent.setScreen(introScreen);
                 } else {
+                    currentScreen = introScreen;
                     parent.setScreen(introScreen);
                 }
                 break;
@@ -57,8 +64,10 @@ public class ScreenManager {
             case MAIN_GAME_SCREEN:
                 if ( mainGameScreen == null ) {
                     mainGameScreen = new MainGameScreen(batch, this);
+                    currentScreen = mainGameScreen;
                     parent.setScreen(mainGameScreen);
                 } else {
+                    currentScreen = mainGameScreen;
                     parent.setScreen(mainGameScreen);
                 }
                 break;
@@ -68,6 +77,10 @@ public class ScreenManager {
 
         }
 
+    }
+
+    public GameScreen getCurrentScreen() {
+        return this.currentScreen;
     }
 
     public AssetLoader getAssetLoader() {

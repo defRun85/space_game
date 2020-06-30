@@ -8,7 +8,8 @@ public interface Component {
         TEST_MESSAGE,
         COLLISION,
         STATE,
-        FIRE
+        FIRE,
+        HEALTH
     }
 
     void receiveMessage(String message);

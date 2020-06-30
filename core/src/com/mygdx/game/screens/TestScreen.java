@@ -12,13 +12,10 @@ import com.mygdx.game.levels.LevelManager;
 
 public class TestScreen extends GameScreen {
 
-    protected EntityFactory factory;
-
     protected Skin skin;
     protected Stage stage;
 
-
-    protected Entity player;
+//    protected Entity player;
 //    protected Entity enemy;
 
     protected EnemyManager enemyMgr;
@@ -26,7 +23,6 @@ public class TestScreen extends GameScreen {
 
     public TestScreen(SpriteBatch _batch, ScreenManager _screenManager) {
         super(_batch, _screenManager);
-        factory = new EntityFactory(_screenManager);
 
         stage = new Stage();
         skin = screenManager.getAssetLoader().getSkin();
