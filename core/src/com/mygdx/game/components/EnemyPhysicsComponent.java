@@ -42,7 +42,7 @@ public class EnemyPhysicsComponent extends PhysicsComponent {
 
         }
 
-        updateCollisionBox();
+        updateCollisionBox(entity);
 
     }
 

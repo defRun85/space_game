@@ -18,7 +18,7 @@ public class EnemyManager {
 
     protected int boundary = 50;
 
-    protected int maxEnemies = 6;
+    protected int maxEnemies = 18;
 
     protected ArrayList<Entity> enemies;
     int startXPos = 51;
@@ -48,7 +48,7 @@ public class EnemyManager {
 
         for (int i = 0; i < getMaxEnemies(); i ++ ) {
 
-            if ( startXPos > 291 ) {
+            if ( startXPos > 360 ) {
                 startXPos = 51;
                 startYPos -= 40;
             }
@@ -56,7 +56,7 @@ public class EnemyManager {
             enemy = factory.getEntity(EntityFactory.EntityType.ENEMY);
             enemy.setPosition(new Vector2(startXPos, startYPos));
             _enemies.add(enemy);
-            startXPos += 48;
+            startXPos += 60;
         }
 
         return _enemies;
@@ -66,6 +66,9 @@ public class EnemyManager {
         for ( Entity enemy : getEnemies()) {
             enemy.render(batch);
         }
+
+
+
     }
 
     public void update(float delta) {

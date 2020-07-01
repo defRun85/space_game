@@ -22,7 +22,7 @@ public class ProjectileManager implements Component {
 
     public void addProjectile() {
         Projectile p = projectileFactory.getProjectile();
-        Vector2 position = entity.getPosition().cpy();
+        Vector2 position = new Vector2(entity.getPosition().x + 20.0f, entity.getPosition().y + 20.0f);
         p.setPosition(position);
         projectiles.add(p);
     }

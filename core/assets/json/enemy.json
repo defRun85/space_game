@@ -1,7 +1,7 @@
 {
   "entityID" : "enemy",
   "state" : "MOVE_LEFT",
-  "collisionBoxSize" : 48,
+  "collisionBoxSize" : 30,
   "healthPoints" : 10,
   "velocity" : 4.0,
 

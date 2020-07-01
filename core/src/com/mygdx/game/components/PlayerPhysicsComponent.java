@@ -34,7 +34,7 @@ public class PlayerPhysicsComponent extends PhysicsComponent {
         isCollisionWithEntity(entity, entities);
 
         checkBoundaries(entity);
-        updateCollisionBox();
+        updateCollisionBox(entity);
 
 
 
@@ -43,20 +43,6 @@ public class PlayerPhysicsComponent extends PhysicsComponent {
     // stop using this for player when enemies have been implemented.
     @Override
     public void update(Entity entity, float delta) {
-
-        switch (currentState) {
-            case MOVE_LEFT:
-                entity.getPosition().add(-velocity, 0);
-                break;
-            case MOVE_RIGHT:
-                entity.getPosition().add(velocity, 0);
-                break;
-            default:
-                break;
-        }
-
-        checkBoundaries(entity);
-        updateCollisionBox();
 
     }
 

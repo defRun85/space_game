@@ -21,7 +21,7 @@ public class Projectile {
 
     public Projectile() {
         position = new Vector2();
-        velocity = new Vector2(0f, 12.0f);
+        velocity = new Vector2(0f, 18.0f);
 
     }
 

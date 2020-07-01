@@ -16,6 +16,7 @@ public abstract class PhysicsComponent implements Component, Disposable {
 //    protected float vel = 5.0f;
 
     protected Rectangle collisionBox;
+    protected float collisionBoxOffset = 10.0f;
 
     public PhysicsComponent() {
         this.collisionBox = new Rectangle();
@@ -47,12 +48,22 @@ public abstract class PhysicsComponent implements Component, Disposable {
         return this.collisionBox;
     }
 
-    public void updateCollisionBox() {
-        collisionBox.setPosition(pos.x, pos.y);
+    public void updateCollisionBox(Entity entity) {
+
+        float x = entity.getPosition().x + collisionBoxOffset;
+        float y = entity.getPosition().y + collisionBoxOffset;
+
+        Vector2 colBoxPos = new Vector2(x, y);
+
+        collisionBox.setPosition(colBoxPos);
     }
 
     public void setCollisionBox(Entity entity) {
-        collisionBox.set(entity.getPosition().x, entity.getPosition().y, entity.getCollisionBoxSize(), entity.getCollisionBoxSize());
+
+        float x = this.pos.x + collisionBoxOffset;
+        float y = this.pos.y + collisionBoxOffset;
+
+        collisionBox.set(x, y, entity.getCollisionBoxSize(), entity.getCollisionBoxSize());
     }
 
     public Vector2 getPosition() {

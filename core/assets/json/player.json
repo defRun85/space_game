@@ -1,7 +1,7 @@
 {
   "entityID" : "player",
   "state" : "IDLE",
-  "collisionBoxSize" : 48,
+  "collisionBoxSize" : 25,
   "healthPoints" : 100,
   "velocity" : 5.0,
 

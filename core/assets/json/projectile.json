@@ -2,7 +2,7 @@
   "entityID" : "projectile",
   "state" : "IDLE",
   "collisionBoxSize" : 48,
-  "velocity" : 12.0,
+  "velocity" : 18.0,
 
   "textureRegionPos" : {
     "x" : 64,
