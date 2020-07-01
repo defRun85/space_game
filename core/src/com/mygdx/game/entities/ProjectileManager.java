@@ -2,7 +2,6 @@ package com.mygdx.game.entities;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.MainClass;
 import com.mygdx.game.components.Component;
 
@@ -32,7 +31,7 @@ public class ProjectileManager implements Component {
         projectiles.remove(_projectile);
     }
 
-    public void update(float delta, Array<Entity> entities) {
+    public void update(float delta, ArrayList<Entity> entities) {
         for ( int i = 0; i < projectiles.size(); i++ ) {
             if ( projectiles.get(i).collision(entities) ) {
 //                System.out.println("Hit!!");
@@ -42,7 +41,7 @@ public class ProjectileManager implements Component {
 
         for ( int i = 0; i < projectiles.size(); i++ ) {
             if ( projectiles.get(i).getPosition().y > MainClass.HEIGHT ) {
-                System.out.println("removing, left screen. " + projectiles.size());
+//                System.out.println("removing, left screen. " + projectiles.size());
                 removeProjectile(projectiles.get(i));
             }
         }

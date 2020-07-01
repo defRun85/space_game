@@ -9,7 +9,7 @@ public interface Component {
         COLLISION,
         STATE,
         FIRE,
-        HEALTH
+        DAMAGE
     }
 
     void receiveMessage(String message);

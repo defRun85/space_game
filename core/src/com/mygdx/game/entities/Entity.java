@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.components.*;
 import com.mygdx.game.input.PlayerInput;
 
@@ -20,6 +19,7 @@ public class Entity {
     protected ArrayList<Component> components;
     protected PhysicsComponent physicsComponent;
     protected GraphicsComponent graphicsComponent;
+    protected HealthComponent healthComponent;
 
     protected PlayerInput playerInput;
     protected ProjectileManager projectileManager;
@@ -32,15 +32,17 @@ public class Entity {
         IDLE
     }
 
-    public Entity(PhysicsComponent _physicsComponent, GraphicsComponent _graphicsComponent) {
+    public Entity(PhysicsComponent _physicsComponent, GraphicsComponent _graphicsComponent, HealthComponent _healthComponent) {
 
         this.components = new ArrayList<Component>();
 
         physicsComponent = _physicsComponent;
         graphicsComponent = _graphicsComponent;
+        healthComponent = _healthComponent;
 
         components.add(physicsComponent);
         components.add(graphicsComponent);
+        components.add(healthComponent);
 
     }
 
@@ -48,6 +50,7 @@ public class Entity {
         setPosition(this.config.getStartPosition());
         this.physicsComponent.setCollisionBox(this);
         projectileManager = new ProjectileManager(this);
+        this.healthComponent.setHealthPoints(getConfig().getHealthPoints());
     }
 
     public void initPlayer(Entity entity) {
@@ -61,11 +64,15 @@ public class Entity {
 
     public void update(float delta) {
         physicsComponent.update(this, delta);
+//        System.out.println(getEntityID() + " : " + getHealthPoints());
     }
 
-    public void update(float delta, Array<Entity> entities) {
+    public void update(float delta, ArrayList<Entity> entities) {
         physicsComponent.update(this, delta, entities);
         projectileManager.update(delta, entities);
+
+//        System.out.println(getEntityID() + " : " + getHealthPoints());
+
     }
 
     public void render(SpriteBatch batch) {
@@ -83,6 +90,10 @@ public class Entity {
 
         projectileManager.receiveMessage(messageString);
 
+    }
+
+    public int getHealthPoints() {
+        return this.healthComponent.getHealthPoints();
     }
 
     public Vector2 getPosition() {

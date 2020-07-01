@@ -23,10 +23,14 @@ public class HealthComponent implements Component {
                 return;
 
             case 2:
-
-
+                if ( string[0].equalsIgnoreCase(MESSAGE.DAMAGE.toString()) ) {
+                    doDamage(Integer.valueOf(string[1]));
+                }
         }
+    }
 
+    public void doDamage(int _damage) {
+        this.healthPoints -= _damage;
     }
 
     public int getHealthPoints() {

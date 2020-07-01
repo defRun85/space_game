@@ -6,6 +6,8 @@ import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.MainClass;
 import com.mygdx.game.components.Component;
 
+import java.util.ArrayList;
+
 import static com.mygdx.game.components.Component.TOKEN;
 
 public class EnemyManager {
@@ -16,9 +18,9 @@ public class EnemyManager {
 
     protected int boundary = 50;
 
-    protected int maxEnemies = 18;
+    protected int maxEnemies = 6;
 
-    protected Array<Entity> enemies;
+    protected ArrayList<Entity> enemies;
     int startXPos = 51;
     int startYPos = MainClass.HEIGHT - 50;
 
@@ -38,9 +40,9 @@ public class EnemyManager {
 
     }
 
-    public Array<Entity> initEnemies() {
+    public ArrayList<Entity> initEnemies() {
 
-        Array<Entity> _enemies = new Array<Entity>();
+        ArrayList<Entity> _enemies = new ArrayList<Entity>();
 
         Entity enemy = null;
 
@@ -68,52 +70,64 @@ public class EnemyManager {
 
     public void update(float delta) {
 
+        for ( int i = 0; i < enemies.size(); i++ ) {
+            if ( enemies.get(i).getHealthPoints() <= 0 ) {
+                enemies.remove(enemies.get(i));
+            }
+        }
+
         boolean left = false;
         boolean right = false;
         boolean down = false;
 
-        float leftXpos = getLeftEnemyXpos();
-        float rightXpos = getRightEnemyXpos();
+        if ( enemies.size() > 0 ) {
 
-        if ( leftXpos < boundary ) {
-            Entity e = getLowestEnemy();
-            if ( e.getPosition().y < layers.get(layerIndex) ) {
-                layerIndex ++;
-                left = false;
-                right = true;
-                down = false;
-            } else {
-                down = true;
+            float leftXpos = getLeftEnemyXpos();
+            float rightXpos = getRightEnemyXpos();
+
+            if ( leftXpos < boundary ) {
+                Entity e = getLowestEnemy();
+                if ( e.getPosition().y < layers.get(layerIndex) ) {
+                    layerIndex ++;
+                    left = false;
+                    right = true;
+                    down = false;
+                } else {
+                    down = true;
+                }
             }
-        }
 
-        if ( rightXpos + 48 > MainClass.WIDTH - boundary ) {
-            Entity e = getLowestEnemy();
-            if ( e.getPosition().y < layers.get(layerIndex) ) {
-                layerIndex ++;
-                left = true;
-                right = false;
-                down = false;
-            } else {
-                down = true;
+            if ( rightXpos + 48 > MainClass.WIDTH - boundary ) {
+                Entity e = getLowestEnemy();
+                if ( e.getPosition().y < layers.get(layerIndex) ) {
+                    layerIndex ++;
+                    left = true;
+                    right = false;
+                    down = false;
+                } else {
+                    down = true;
+                }
             }
+
+            if ( left ) {
+                setEnemiesState(Component.MESSAGE.STATE, Entity.State.MOVE_LEFT.toString());
+            }
+
+            if ( right ) {
+                setEnemiesState(Component.MESSAGE.STATE, Entity.State.MOVE_RIGHT.toString());
+            }
+
+            if ( down ) {
+                setEnemiesState(Component.MESSAGE.STATE, Entity.State.MOVE_DOWN.toString());
+            }
+
+            for ( Entity enemy : enemies ) {
+                enemy.update(delta);
+            }
+
         }
 
-        if ( left ) {
-            setEnemiesState(Component.MESSAGE.STATE, Entity.State.MOVE_LEFT.toString());
-        }
 
-        if ( right ) {
-            setEnemiesState(Component.MESSAGE.STATE, Entity.State.MOVE_RIGHT.toString());
-        }
-
-        if ( down ) {
-            setEnemiesState(Component.MESSAGE.STATE, Entity.State.MOVE_DOWN.toString());
-        }
-
-        for ( Entity enemy : enemies ) {
-            enemy.update(delta);
-        }
 
     }
 
@@ -185,11 +199,11 @@ public class EnemyManager {
         this.maxEnemies = _maxEnemies;
     }
 
-    public Array<Entity> getEnemies() {
+    public ArrayList<Entity> getEnemies() {
         return this.enemies;
     }
 
-    public void setEnemies(Array<Entity> _enemies) {
+    public void setEnemies(ArrayList<Entity> _enemies) {
         this.enemies = _enemies;
     }
 

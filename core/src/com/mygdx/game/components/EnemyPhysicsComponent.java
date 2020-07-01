@@ -1,7 +1,8 @@
 package com.mygdx.game.components;
 
-import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.entities.Entity;
+
+import java.util.ArrayList;
 
 public class EnemyPhysicsComponent extends PhysicsComponent {
 
@@ -15,7 +16,7 @@ public class EnemyPhysicsComponent extends PhysicsComponent {
 
     // PLAYER UPDATE.
     @Override
-    public void update(Entity entity, float delta, Array<Entity> _entities) {
+    public void update(Entity entity, float delta, ArrayList<Entity> _entities) {
 
     }
 

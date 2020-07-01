@@ -46,7 +46,7 @@ public class EntityFactory {
 //                return entity;
 
             case PLAYER:
-                entity = new Entity(new PlayerPhysicsComponent(), new PlayerGraphicsComponent());
+                entity = new Entity(new PlayerPhysicsComponent(), new PlayerGraphicsComponent(), new HealthComponent());
                 EntityConfig playerConfig = getEntityConfig(PLAYER_CONFIG_PATH);
                 entity.initPlayer(entity);
                 entity.setConfig(playerConfig);
@@ -56,7 +56,7 @@ public class EntityFactory {
                 return entity;
 
             case ENEMY:
-                entity = new Entity(new EnemyPhysicsComponent(), new EnemyGraphicsComponent());
+                entity = new Entity(new EnemyPhysicsComponent(), new EnemyGraphicsComponent(), new HealthComponent());
                 EntityConfig enemyConfig = getEntityConfig(ENEMY_CONFIG_PATH);
                 entity.setConfig(enemyConfig);
                 entity.setTexture(AssetLoader.getSpritesheet() );

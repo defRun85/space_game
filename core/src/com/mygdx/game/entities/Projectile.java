@@ -3,9 +3,10 @@ package com.mygdx.game.entities;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.game.components.Component;
+
+import java.util.ArrayList;
 
 public class Projectile {
 
@@ -33,7 +34,7 @@ public class Projectile {
         batch.draw(region, position.x, position.y, 32, 32);
     }
 
-    public boolean collision(Array<Entity> entities) {
+    public boolean collision(ArrayList<Entity> entities) {
 
         boolean collision = false;
 
@@ -41,7 +42,7 @@ public class Projectile {
             if ( this.collisionBox.overlaps(e.getCollisionBox()) ) {
 //                System.out.println("Hit!!");
                 collision = true;
-                e.sendMessage(Component.MESSAGE.COLLISION, "I've been Hit!!, I'm going down!!");
+                e.sendMessage(Component.MESSAGE.DAMAGE, "10");
             }
         }
 

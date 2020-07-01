@@ -6,7 +6,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.game.MainClass;
 import com.mygdx.game.entities.EnemyManager;
-import com.mygdx.game.entities.Entity;
 import com.mygdx.game.entities.EntityFactory;
 import com.mygdx.game.levels.LevelManager;
 

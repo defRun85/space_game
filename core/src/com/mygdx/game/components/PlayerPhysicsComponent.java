@@ -1,9 +1,10 @@
 package com.mygdx.game.components;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.MainClass;
 import com.mygdx.game.entities.Entity;
+
+import java.util.ArrayList;
 
 public class PlayerPhysicsComponent extends PhysicsComponent {
 
@@ -17,7 +18,7 @@ public class PlayerPhysicsComponent extends PhysicsComponent {
 
     // PLAYER UPDATE.
     @Override
-    public void update(Entity entity, float delta, Array<Entity> entities) {
+    public void update(Entity entity, float delta, ArrayList<Entity> entities) {
 
         switch (currentState) {
             case MOVE_LEFT:
